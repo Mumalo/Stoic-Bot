@@ -11,9 +11,8 @@ export class TwitterDataSource implements IDataSource<TweetBody> {
 
     public loadData(): void {
         if (this.tweetsList.length > 0) return;
-        for (const item in data) {
-            const obj: TweetBody = JSON.parse(item);
-            this.tweetsList.push(obj)
+        for (const item of data) {
+            this.tweetsList.push(item)
         }
     }
 

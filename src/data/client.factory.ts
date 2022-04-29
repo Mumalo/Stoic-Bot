@@ -1,10 +1,9 @@
-import {IClientFactory, Credentials} from "../types";
-import Twitter from "twitter-v2";
-
+import {Credentials, IClientFactory} from "../types";
+import {TwitterApi} from 'twitter-api-v2';
 
 export class TwitterClientFactory implements IClientFactory {
-    private credentials: Credentials;
-    private twitterClient: Twitter | undefined;
+    private readonly credentials: Credentials;
+    private twitterClient: TwitterApi | undefined;
 
     public constructor(credentials: Credentials) {
         this.credentials = credentials;
@@ -12,17 +11,13 @@ export class TwitterClientFactory implements IClientFactory {
     }
 
     private initClient(): void {
+        console.log("Credentials are", this.credentials)
         if (!this.twitterClient) {
-            this.twitterClient = new Twitter({
-                consumer_key: this.credentials.consumerKey,
-                consumer_secret: this.credentials.consumerSecret,
-                access_token_key: this.credentials.accessTokenKey,
-                access_token_secret: this.credentials.accessTokenSecret,
-            })
+            this.twitterClient = new TwitterApi(this.credentials)
         }
     }
 
-    public getClient(): Twitter | undefined {
+    public getClient(): TwitterApi | undefined {
         if (!this.twitterClient) this.initClient();
         return this.twitterClient;
     }

@@ -1,8 +1,8 @@
 export type Credentials = {
-    consumerKey: string,
-    consumerSecret: string,
-    accessTokenKey: string,
-    accessTokenSecret: string
+    appKey: string,
+    appSecret: string,
+    accessToken: string,
+    accessSecret: string
 }
 
 
