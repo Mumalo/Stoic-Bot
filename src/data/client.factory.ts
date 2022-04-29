@@ -11,7 +11,6 @@ export class TwitterClientFactory implements IClientFactory {
     }
 
     private initClient(): void {
-        console.log("Credentials are", this.credentials)
         if (!this.twitterClient) {
             this.twitterClient = new TwitterApi(this.credentials)
         }

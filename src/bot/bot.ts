@@ -15,15 +15,15 @@ export class TwitterBot {
     }
 
     private async postTweet(tweetBody: TweetBody): Promise<any> {
-        console.log("postTweet method called")
+        const formattedTweet: string = this.formatTweet(tweetBody);
         const client: TwitterApi = this.clientFactory.getClient();
-        return client.v1.tweet(tweetBody.text)
+        console.log("Positing new tweet", JSON.stringify(formattedTweet));
+        return client.v1.tweet(this.formatTweet(tweetBody))
     }
 
     public async postRandomTweet(): Promise<any> {
         const dataSource: IDataSource<TweetBody> = this.dataSource;
         const randomTweet: TweetBody = dataSource.getRandomTweet();
-        console.log("Posting random tweet", JSON.stringify(randomTweet));
         return this.postTweet(randomTweet);
     }
 
@@ -45,6 +45,10 @@ export class TwitterBot {
         const clientFactory: IClientFactory = new TwitterClientFactory(config);
         const dataSource: IDataSource<TweetBody> = new TwitterDataSource();
         return new TwitterBot(clientFactory, dataSource);
+    }
+
+    public formatTweet(tweetBody: TweetBody): string {
+        return `"${tweetBody.text}" - ${tweetBody.author}`
     }
 }
 
