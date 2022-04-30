@@ -29,3 +29,9 @@ I created two deployment configs here.
 - Run `npm run dev` to start the app in dev mode and `npm start` to start the app in production
 
 # Bot configs
+- The bot will pot a tweet after some time set in the config/config.ts botConfigs#delayInSeconds file
+- Set a value here to determine how frequent a tweet will be posted 
+
+# Deploy to Heroku
+- see deployment docs [HERE](https://devcenter.heroku.com/articles/build-docker-images-heroku-yml)
+
