@@ -10,4 +10,7 @@ export const config: Credentials = {
     accessSecret: process.env.TWITTER_TOKEN_SECRET || ''
 }
 
+export const botConfigs: { delayInSeconds: number } = {
+    delayInSeconds: 86400 //one a day
+}
 

@@ -1,7 +1,7 @@
 import {IClientFactory, IDataSource, TweetBody} from "../types";
 import {TwitterDataSource} from "../data/bot.data";
 import {TwitterClientFactory} from "../data/client.factory";
-import {config} from "../config/config";
+import {botConfigs, config} from "../config/config";
 import {wait} from "../utils/uitls";
 import TwitterApi from "twitter-api-v2";
 
@@ -33,7 +33,7 @@ export class TwitterBot {
         for (; ;) {
             try {
                 console.log("Preparing to post tweet...");
-                await wait(5);
+                await wait(botConfigs.delayInSeconds);
                 await twitterBot.postRandomTweet();
             } catch (e) {
                 console.log("Error in bot", e)

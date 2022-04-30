@@ -1,0 +1,13 @@
+version: "3.4"
+
+services:
+  api:
+    build:
+      context: .
+      target: development
+    container_name: stoic_bot
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    command: npm run dev
